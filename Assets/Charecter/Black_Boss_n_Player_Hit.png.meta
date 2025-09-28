@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: f2aa0f5842cdfb249a9535a281a91699
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5006069888568764237
+    second: Black_Boss_n_Player_Hit_0
+  - first:
+      213: 7427422349320326768
+    second: Black_Boss_n_Player_Hit_1
+  - first:
+      213: -8647708559385200585
+    second: Black_Boss_n_Player_Hit_2
+  - first:
+      213: -2949173530304086701
+    second: Black_Boss_n_Player_Hit_3
+  - first:
+      213: -3359690769658223639
+    second: Black_Boss_n_Player_Hit_4
+  - first:
+      213: -3325048284753792052
+    second: Black_Boss_n_Player_Hit_5
+  - first:
+      213: 7701561070439208793
+    second: Black_Boss_n_Player_Hit_6
+  - first:
+      213: -5354180240623633430
+    second: Black_Boss_n_Player_Hit_7
+  - first:
+      213: -8831113965617068806
+    second: Black_Boss_n_Player_Hit_8
+  - first:
+      213: 4399722992670955833
+    second: Black_Boss_n_Player_Hit_9
+  - first:
+      213: -5689590242467636858
+    second: Black_Boss_n_Player_Hit_10
+  - first:
+      213: 1941564195129491783
+    second: Black_Boss_n_Player_Hit_11
+  - first:
+      213: -447017593903487015
+    second: Black_Boss_n_Player_Hit_12
+  - first:
+      213: 7376954468085063344
+    second: Black_Boss_n_Player_Hit_13
+  - first:
+      213: -403532334815208072
+    second: Black_Boss_n_Player_Hit_14
+  - first:
+      213: 5595668248319271604
+    second: Black_Boss_n_Player_Hit_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8541ba5fdd68ab0800000000000000
+      internalID: -5006069888568764237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 4
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e09084641831760800000000000000
+      internalID: 7427422349320326768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 4
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7387dbcf1ea2df780800000000000000
+      internalID: -8647708559385200585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 4
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d7d31bc4e6217d0800000000000000
+      internalID: -2949173530304086701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_4
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 4
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3ec5f9b0bff51d0800000000000000
+      internalID: -3359690769658223639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 4
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc37a3ea33e0bd1d0800000000000000
+      internalID: -3325048284753792052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_6
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 4
+        width: 98
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957918b2df071ea60800000000000000
+      internalID: 7701561070439208793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_7
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 4
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb7636507122b5b0800000000000000
+      internalID: -5354180240623633430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_8
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 4
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af4476433a4917580800000000000000
+      internalID: -8831113965617068806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_9
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 4
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939554840c4fe0d30800000000000000
+      internalID: 4399722992670955833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_10
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 4
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6891038b1d38a01b0800000000000000
+      internalID: -5689590242467636858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_11
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7418f4f3952d1fa10800000000000000
+      internalID: 1941564195129491783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_12
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 4
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d76803eddfdbc9f0800000000000000
+      internalID: -447017593903487015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_13
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 4
+        width: 98
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bed0720105306660800000000000000
+      internalID: 7376954468085063344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_14
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 2
+        width: 58
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87d94ffba7d566af0800000000000000
+      internalID: -403532334815208072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_Boss_n_Player_Hit_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 2
+        width: 61
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2a00eef9ec7ad40800000000000000
+      internalID: 5595668248319271604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 11896e6160ff3624abe656b132a2178b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Black_Boss_n_Player_Hit_0: -5006069888568764237
+      Black_Boss_n_Player_Hit_1: 7427422349320326768
+      Black_Boss_n_Player_Hit_10: -5689590242467636858
+      Black_Boss_n_Player_Hit_11: 1941564195129491783
+      Black_Boss_n_Player_Hit_12: -447017593903487015
+      Black_Boss_n_Player_Hit_13: 7376954468085063344
+      Black_Boss_n_Player_Hit_14: -403532334815208072
+      Black_Boss_n_Player_Hit_15: 5595668248319271604
+      Black_Boss_n_Player_Hit_2: -8647708559385200585
+      Black_Boss_n_Player_Hit_3: -2949173530304086701
+      Black_Boss_n_Player_Hit_4: -3359690769658223639
+      Black_Boss_n_Player_Hit_5: -3325048284753792052
+      Black_Boss_n_Player_Hit_6: 7701561070439208793
+      Black_Boss_n_Player_Hit_7: -5354180240623633430
+      Black_Boss_n_Player_Hit_8: -8831113965617068806
+      Black_Boss_n_Player_Hit_9: 4399722992670955833
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

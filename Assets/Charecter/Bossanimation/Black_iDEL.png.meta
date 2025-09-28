@@ -1,0 +1,634 @@
+fileFormatVersion: 2
+guid: ff0d284c053cc8f41bca68c350389a1e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4800208915396285482
+    second: Black_iDEL_0
+  - first:
+      213: 4900187998811233557
+    second: Black_iDEL_1
+  - first:
+      213: 83304247597757967
+    second: Black_iDEL_2
+  - first:
+      213: -6836836711851652652
+    second: Black_iDEL_3
+  - first:
+      213: -2318088439571571684
+    second: Black_iDEL_4
+  - first:
+      213: 1837149186087198013
+    second: Black_iDEL_5
+  - first:
+      213: -1229951154459680846
+    second: Black_iDEL_6
+  - first:
+      213: -1190317623915312330
+    second: Black_iDEL_7
+  - first:
+      213: -8095646440685645921
+    second: Black_iDEL_8
+  - first:
+      213: -2978279116643859573
+    second: Black_iDEL_9
+  - first:
+      213: -653888419261323148
+    second: Black_iDEL_10
+  - first:
+      213: -8059908046571546285
+    second: Black_iDEL_11
+  - first:
+      213: 7055707348124549388
+    second: Black_iDEL_12
+  - first:
+      213: -6654718814312160700
+    second: Black_iDEL_13
+  - first:
+      213: 4066181162278530814
+    second: Black_iDEL_14
+  - first:
+      213: -3123303729093757971
+    second: Black_iDEL_15
+  - first:
+      213: 6193894421032810832
+    second: Black_iDEL_16
+  - first:
+      213: -4964157490020350668
+    second: Black_iDEL_17
+  - first:
+      213: -5236998838865753695
+    second: Black_iDEL_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Black_iDEL_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 99
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6db242e8c6b326db0800000000000000
+      internalID: -4800208915396285482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 99
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d96c9c507f00440800000000000000
+      internalID: 4900187998811233557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 99
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f06785695c4f72100800000000000000
+      internalID: 83304247597757967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_3
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 99
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d98bb2db3dae11a0800000000000000
+      internalID: -6836836711851652652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_4
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 99
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1c956198de74dfd0800000000000000
+      internalID: -2318088439571571684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 99
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d102c737dde7910800000000000000
+      internalID: 1837149186087198013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 99
+        width: 98
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf595b01f55eeee0800000000000000
+      internalID: -1229951154459680846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_7
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 99
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b04a87d642b7fe0800000000000000
+      internalID: -1190317623915312330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 99
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9fc6cb647c76af80800000000000000
+      internalID: -8095646440685645921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_9
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 99
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b838a7a4ce60ba6d0800000000000000
+      internalID: -2978279116643859573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_10
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 99
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478ef2772fbece6f0800000000000000
+      internalID: -653888419261323148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_11
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 99
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3595ac9b554752090800000000000000
+      internalID: -8059908046571546285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_12
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 99
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c01c31c4378eae160800000000000000
+      internalID: 7055707348124549388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_13
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 99
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 442a0d02f70b5a3a0800000000000000
+      internalID: -6654718814312160700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_14
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 5
+        width: 54
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe2ff9393afd6830800000000000000
+      internalID: 4066181162278530814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_15
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 2
+        width: 51
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de3b6bd6ecbc7a4d0800000000000000
+      internalID: -3123303729093757971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0593fe5c82225f550800000000000000
+      internalID: 6193894421032810832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_17
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 4
+        width: 49
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4350e366015cb1bb0800000000000000
+      internalID: -4964157490020350668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_18
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 5
+        width: 54
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a906488d417257b0800000000000000
+      internalID: -5236998838865753695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black_iDEL_19
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 98
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d410d6ab550c7d048ae73f3d0106c3ba
+      internalID: -695172796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a6c5c782b76c72c4093255f1c690fc57
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Black_iDEL_0: -4800208915396285482
+      Black_iDEL_1: 4900187998811233557
+      Black_iDEL_10: -653888419261323148
+      Black_iDEL_11: -8059908046571546285
+      Black_iDEL_12: 7055707348124549388
+      Black_iDEL_13: -6654718814312160700
+      Black_iDEL_14: 4066181162278530814
+      Black_iDEL_15: -3123303729093757971
+      Black_iDEL_16: 6193894421032810832
+      Black_iDEL_17: -4964157490020350668
+      Black_iDEL_18: -5236998838865753695
+      Black_iDEL_19: -695172796
+      Black_iDEL_2: 83304247597757967
+      Black_iDEL_3: -6836836711851652652
+      Black_iDEL_4: -2318088439571571684
+      Black_iDEL_5: 1837149186087198013
+      Black_iDEL_6: -1229951154459680846
+      Black_iDEL_7: -1190317623915312330
+      Black_iDEL_8: -8095646440685645921
+      Black_iDEL_9: -2978279116643859573
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
