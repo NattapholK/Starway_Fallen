@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 738605741851537202}
   - component: {fileID: 6820780209607562045}
   - component: {fileID: 7392219760282789163}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,3 +145,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   destroyOnHit: 1
+  vfxHit: {fileID: 0}
+  vfxParried: {fileID: 0}
+  sfxHit: {fileID: 0}
+  sfxParried: {fileID: 8300000, guid: ce30b9478dc1d6c40b7844adc79472da, type: 3}

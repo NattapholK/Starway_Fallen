@@ -1,4 +1,4 @@
-// File: BossChaseAttack2D_WithAnim.cs  (Attack + Bullet Hell, animation-driven)
+// File: BossChaseAttack2D_WithAnim.cs  (Attack + Bullet Hell + SFX hooks)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,15 +29,15 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     public float maxAttackDuration = 1.2f;
 
     [Header("Bullet Hell")]
-    public string hellTrigger = "Hell";         // Trigger ใน Animator
+    public string hellTrigger = "Hell";
     [Tooltip("ชื่อ state ของคลิป Bullet Hell (เช่น 'Hell_frame')")]
     public string hellStateName = "Hell_frame";
-    public float hellCooldown = 10f;            // คูลดาวน์เรียก Hell
-    public float maxHellDuration = 2.0f;        // กันค้างจากคลิป Hell
-    public bool  hellOnlyWhenInRange = false;   // ถ้าต้องการเรียก Hell เฉพาะอยู่ใกล้
+    public float hellCooldown = 10f;
+    public float maxHellDuration = 2.0f;
+    public bool  hellOnlyWhenInRange = false;
 
     [Header("Bullet Spawner (optional)")]
-    public BossBulletSpawner bulletSpawner;     // ใส่คอมโพเนนต์ spawner ไว้บนบอส
+    public BossBulletSpawner bulletSpawner; // ใส่คอมโพเนนต์ spawner ไว้บนบอส
 
     [Header("Hitbox (OverlapBox)")]
     public Transform hitOrigin;
@@ -60,6 +60,10 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 
     [Tooltip("กันสั่นขณะผู้เล่นเกือบแนวตั้งเดียวกัน")]
     public float flipDeadZone = 0.02f;
+
+    [Header("SFX (optional)")]
+    [Tooltip("อ้างอิง BossAttackSFXEvents เพื่อใช้ Animation Events เล่นเสียง")]
+    public BossAttackSFXEvents sfx;
 
     // ===== internal =====
     Rigidbody2D rb;
@@ -97,16 +101,17 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         {
             var pGo = GameObject.FindWithTag("Player");
             if (pGo) player = pGo.transform;
+#if UNITY_2023_1_OR_NEWER
             if (!player)
             {
-#if UNITY_2023_1_OR_NEWER
                 var p = Object.FindFirstObjectByType<PlayerHealth>();
                 if (p) player = p.transform;
-#endif
             }
+#endif
         }
         if (!hitOrigin) hitOrigin = transform;
         if (!bulletSpawner) bulletSpawner = GetComponent<BossBulletSpawner>();
+        if (!sfx) sfx = GetComponent<BossAttackSFXEvents>();
 
         _originalScale   = transform.localScale;
         _attackStateHash = Animator.StringToHash(attackStateName);
@@ -135,7 +140,7 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         if (facePlayerAlways && !attacking && !inHell)
             TryFaceByX(player.position.x - transform.position.x);
 
-        // กำลังอยู่ใน Hell
+        // อยู่ใน Hell
         if (inHell)
         {
             anim.SetBool(runBool, false);
@@ -144,7 +149,6 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
             var st = anim.GetCurrentAnimatorStateInfo(0);
             bool inHellState = st.shortNameHash == _hellStateHash;
 
-            // ออกจาก state แล้วหรือเกินเวลาปลอดภัย -> ปลดล็อก
             if ((!inHellState && !anim.IsInTransition(0)) || _hellTimer >= maxHellDuration)
             {
                 inHell = false;
@@ -152,7 +156,7 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
             return;
         }
 
-        // กำลังอยู่ใน Attack ปกติ
+        // อยู่ใน Attack ปกติ
         if (attacking)
         {
             anim.SetBool(runBool, false);
@@ -226,8 +230,18 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     }
 
     // Animation Events (Normal_at)
-    public void AE_AttackBegin() { _hitThisSwing.Clear(); }
-    public void AE_AttackHit()   { PerformHitboxOnce(); }
+    public void AE_AttackBegin()
+    {
+        _hitThisSwing.Clear();
+        sfx?.AE_SwingStart(); // ง้างดาบ/เริ่มสวิง
+    }
+
+    public void AE_AttackHit()
+    {
+        PerformHitboxOnce();  // ตรวจโดนจริง
+        // ไม่เล่นเสียงที่นี่ ให้ไปตัดสินใน AE_MeleeResolve() แทน
+    }
+
     public void AE_AttackEnd()
     {
         attacking = false;
@@ -242,7 +256,6 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         hellCD    = hellCooldown;
         _hellTimer = 0f;
 
-        // ล็อกหน้าก่อนเข้าท่า
         TryFaceByX(player.position.x - transform.position.x);
 
         anim.ResetTrigger(hellTrigger);
@@ -252,7 +265,7 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     // Animation Events (Hell_frame)
     public void AE_HellBegin()
     {
-        // ถ้ามีเอฟเฟกต์เปิดท่า ใส่ตรงนี้
+        sfx?.AE_HellCharge();
     }
 
     // เรียกบน “เฟรมดาบปักพื้น”
@@ -260,17 +273,27 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     {
         if (bulletSpawner != null)
         {
-            // เลือกรูปแบบที่ต้องการ 1 อย่าง หรือสุ่มได้
-            bulletSpawner.AE_SpawnRadialBurst();     // ยิงเป็นวงรอบตัวชุดใหญ่
-            // bulletSpawner.AE_SpawnRadialWaves();  // หรือยิงเป็นหลายระลอก
-            // bulletSpawner.AE_SpawnSpiral();       // หรือยิงเป็นก้นหอย
+            bulletSpawner.AE_SpawnRadialBurst();
+            // bulletSpawner.AE_SpawnRadialWaves();
+            // bulletSpawner.AE_SpawnSpiral();
         }
+        sfx?.AE_HellBurst();
     }
 
     public void AE_HellEnd()
     {
         inHell = false;
     }
+
+    // ===== SFX resolve (เรียกจากคีย์เฟรม contact) =====
+    public void AE_MeleeResolve()
+    {
+        // จะเล่น Hit หรือ Whoosh ขึ้นกับว่า PerformHitboxOnce เพิ่งทำดาเมจได้หรือไม่ (ผ่าน RegisterHit)
+        sfx?.AE_MeleeResolve();
+    }
+
+    public void AE_Hurt()  { sfx?.AE_Hurt();  }
+    public void AE_Death() { sfx?.AE_Death(); }
 
     // ===== Hitbox core =====
     void PerformHitboxOnce()
@@ -282,6 +305,8 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         Vector2 center = origin + dir * forwardOffset;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
+        bool hitAnyone = false;
+
         Collider2D[] hits = Physics2D.OverlapBoxAll(center, boxSize, angle, hittableLayers);
         foreach (var c in hits)
         {
@@ -289,9 +314,13 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
                 continue;
 
             _hitThisSwing.Add(c);
+            hitAnyone = true;
 
             var target = c.GetComponentInParent<IDamageable2D>();
-            if (target != null) { target.TakeDamage(baseDamage, transform.position); }
+            if (target != null)
+            {
+                target.TakeDamage(baseDamage, transform.position);
+            }
             else
             {
                 var ph = c.GetComponentInParent<PlayerHealth>();
@@ -302,6 +331,9 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 #if UNITY_EDITOR
         DebugDrawBox(center, boxSize, angle, Color.red, 0.02f);
 #endif
+
+        // แจ้งระบบเสียงว่า "ตีโดนจริง" ภายในเฟรมนี้
+        if (hitAnyone) sfx?.RegisterHit(false); // ถ้ามีระบบชนเกราะให้ส่ง true
     }
 
     // ===== Flip =====

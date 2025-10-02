@@ -1,4 +1,4 @@
-// File: AttackController.cs  (FINAL + FALLBACK) — 2D melee for Boss/Enemies
+/// File: AttackController.cs  (FINAL + SFX + Simple Bullet Destroy)
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -19,7 +19,7 @@ public class AttackController : MonoBehaviour
     [Tooltip("ถ้ามี ให้วาง Empty ชื่อ HitOrigin ที่ปลายดาบและลากมาใส่")]
     public Transform hitOrigin;                 // optional
     [Min(0f)] public float hitRadius = 0.9f;
-    public LayerMask hittableLayers;            // ติ๊กเฉพาะ Enemy/Boss
+    public LayerMask hittableLayers;            // ต้องติ๊กเลเยอร์ Enemy/Boss/ Bullet
     [Tooltip("ตั้ง = transform.root เพื่อกันโดนตัวเอง/ลูก ๆ")]
     public Transform ownerRoot;
 
@@ -27,7 +27,7 @@ public class AttackController : MonoBehaviour
     public int normalDamage = 12;
 
     [Header("Sweep Damage (per hit or auto)")]
-    public int sweep1Damage   = 8;   // ใช้เมื่อมี Animation Event
+    public int sweep1Damage   = 8;
     public int sweep2Damage   = 12;
     public int sweepFinisher  = 18;
 
@@ -40,20 +40,37 @@ public class AttackController : MonoBehaviour
     public float originForwardOffset = 0.0f;
 
     [Header("Fallbacks (no AnimEvent / no HitOrigin)")]
-    [Tooltip("ถ้าไม่ได้วาง Animation Event สำหรับ Attack ปกติ ให้ยิงดาเมจทันทีเมื่อกดทริกเกอร์")]
     public bool autoHitOnNormalTrigger = true;
-    [Tooltip("ถ้าไม่ได้วาง Animation Event สำหรับ Sweep ให้ยิงดาเมจทันทีเมื่อกดทริกเกอร์")]
     public bool autoHitOnSweepTrigger  = true;
     [Tooltip("ถ้าไม่มี HitOrigin จะคำนวณ origin = ตำแหน่งดาบ + .right * ค่านี้")]
     public float autoForwardOffsetIfNoOrigin = 0.5f;
 
-    AudioSource _audio;
+    // ============== SFX ==============
+    [Header("SFX")]
+    public bool playWhooshOnTrigger = false;
+    public AudioSource audioSource;
+    public AudioClip sfxWhoosh;
+    public AudioClip sfxHitArmor;   // ใช้เป็นเสียงฟันโดนกระสุนได้ด้วย
+    public AudioClip sfxHitFlesh;
+    [Range(0f,1f)] public float sfxVolume = 1f;
+
+    [Header("SFX Variation")]
+    public Vector2 pitchRange = new Vector2(0.95f, 1.05f);
+    public int maxHitSoundsPerSwing = 2;
+
+    // ============== Bullet Parry (simple) ==============
+    [Header("Bullet Parry (simple)")]
+    [Tooltip("เปิดไว้เพื่อให้ดาบลบกระสุนทันที (ไม่สะท้อน)")]
+    public bool destroyBulletsOnHit = true;
+    [Tooltip("Tag ของกระสุน (ให้ตั้งใน prefab กระสุน)")]
+    public string bulletTag = "Bullet";
 
     void Reset()
     {
         animator     = GetComponent<Animator>();
         directionRef = transform;
         ownerRoot    = transform.root;
+        audioSource  = GetComponent<AudioSource>();
     }
 
     void Awake()
@@ -61,7 +78,9 @@ public class AttackController : MonoBehaviour
         if (!animator)     animator     = GetComponent<Animator>();
         if (!directionRef) directionRef = transform;
         if (!ownerRoot)    ownerRoot    = transform.root;
-        _audio = GetComponent<AudioSource>();
+        if (!audioSource)  audioSource  = GetComponent<AudioSource>();
+        if (!audioSource)  audioSource  = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Update()
@@ -80,11 +99,9 @@ public class AttackController : MonoBehaviour
         _cooldownTimer = normalAttackCooldown;
 
         if (animator) animator.SetTrigger(normalAttackTrigger);
-        PlaySwing();
+        if (playWhooshOnTrigger) PlayOneShotVar(sfxWhoosh);
 
-        // Fallback: ถ้าไม่มี Animation Event สำหรับ Normal
-        if (autoHitOnNormalTrigger)
-            DoHit(normalDamage);
+        if (autoHitOnNormalTrigger) DoHit(normalDamage);
     }
 
     void StartCharge()
@@ -103,33 +120,25 @@ public class AttackController : MonoBehaviour
         _cooldownTimer = sweepAttackCooldown;
 
         if (animator) animator.SetTrigger(sweepAttackTrigger);
-        PlaySwing();
+        if (playWhooshOnTrigger) PlayOneShotVar(sfxWhoosh);
 
-        // Fallback: ถ้าไม่มี Animation Event สำหรับ Sweep
-        if (autoHitOnSweepTrigger)
-            DoHit(sweepFinisher);  // หรือจะใช้ค่ากลางก็ได้ เช่น (sweep2Damage)
-    }
-
-    void PlaySwing()
-    {
-        if (!_audio) return;
-        // _audio.PlayOneShot(someClip); // ใส่คลิปเสียงถ้ามี
+        if (autoHitOnSweepTrigger) DoHit(sweepFinisher);
     }
 
     // ---- Core hit ----
     void DoHit(int dmg)
     {
-        // 1) หาทิศหน้า
         Vector2 forward = directionRef ? (Vector2)directionRef.right : Vector2.right;
 
-        // 2) หา origin
         Vector2 basePos = hitOrigin ? (Vector2)hitOrigin.position
                                     : (Vector2)transform.position + forward * autoForwardOffsetIfNoOrigin;
         Vector2 origin = basePos + forward * originForwardOffset;
 
-        // 3) Overlap
         Collider2D[] hits = Physics2D.OverlapCircleAll(origin, hitRadius, hittableLayers);
         float halfArc = frontalArc * 0.5f;
+
+        bool hitAny = false;
+        int  hitSoundCount = 0;
 
         foreach (var col in hits)
         {
@@ -139,27 +148,75 @@ public class AttackController : MonoBehaviour
             // กรองมุมด้านหน้า
             if (frontOnly)
             {
-                Vector2 closest  = col.ClosestPoint(origin); // 2D API → Vector2
+                Vector2 closest  = col.ClosestPoint(origin);
                 Vector2 toTarget = closest - origin;
                 if (toTarget.sqrMagnitude < 1e-6f) continue;
                 if (Vector2.Angle(forward, toTarget) > halfArc) continue;
             }
 
-            // ยิงดาเมจ
-            var d2 = col.GetComponentInParent<IDamageable2D>();
-            if (d2 != null) { d2.TakeDamage(dmg, transform.position); continue; }
+            // ---- ลบกระสุนทันที (ไม่สะท้อน) ----
+            if (destroyBulletsOnHit)
+            {
+                if (!string.IsNullOrEmpty(bulletTag) && col.CompareTag(bulletTag))
+                {
+                    var go = col.attachedRigidbody ? col.attachedRigidbody.gameObject : col.gameObject;
+                    Destroy(go);
+                    PlayHitSound(ref hitSoundCount, isBoss:false);
+                    hitAny = true;
+                    continue; // ไม่ยิงดาเมจอย่างอื่นต่อ
+                }
+                // เผื่อไม่ได้ตั้ง Tag ไว้ แต่มีสคริปต์ BossBullet
+                var bb = col.GetComponentInParent<BossBullet>();
+                if (bb)
+                {
+                    Destroy(bb.gameObject);
+                    PlayHitSound(ref hitSoundCount, isBoss:false);
+                    hitAny = true;
+                    continue;
+                }
+            }
 
-            var d1 = col.GetComponentInParent<IDamageable>();
-            if (d1 != null) d1.TakeDamage(dmg);
+            // ---- ยิงดาเมจใส่ศัตรู/บอส ----
+            var d2 = col.GetComponentInParent<IDamageable2D>();
+            var d1 = (d2 == null) ? col.GetComponentInParent<IDamageable>() : null;
+
+            if (d2 != null) d2.TakeDamage(dmg, transform.position);
+            else if (d1 != null) d1.TakeDamage(dmg);
+            else continue;
+
+            hitAny = true;
+            bool isBoss = col.GetComponentInParent<BossHealth>() != null;
+            PlayHitSound(ref hitSoundCount, isBoss);
         }
+
+        // ถ้าฟันลม และไม่ได้เล่น whoosh ตอนกด → เล่น whoosh ตอนนี้
+        if (!hitAny && !playWhooshOnTrigger) PlayOneShotVar(sfxWhoosh);
     }
 
-    // ---- Animation Events (ถ้ามี) ----
+    void PlayHitSound(ref int count, bool isBoss)
+    {
+        if (count >= maxHitSoundsPerSwing) return;
+        PlayOneShotVar(isBoss ? sfxHitArmor : sfxHitFlesh);
+        count++;
+    }
+
+    // ---- Animation Events ----
     public void AE_Hit_Normal()        => DoHit(normalDamage);
     public void AE_Hit_Sweep1()        => DoHit(sweep1Damage);
     public void AE_Hit_Sweep2()        => DoHit(sweep2Damage);
     public void AE_Hit_SweepFinisher() => DoHit(sweepFinisher);
     public void AE_Hit_Custom(int dm)  => DoHit(dm);
+
+    // ---- SFX helper ----
+    void PlayOneShotVar(AudioClip clip)
+    {
+        if (!clip || !audioSource) return;
+        float p = Random.Range(pitchRange.x, pitchRange.y);
+        float old = audioSource.pitch;
+        audioSource.pitch = p;
+        audioSource.PlayOneShot(clip, sfxVolume);
+        audioSource.pitch = old;
+    }
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
