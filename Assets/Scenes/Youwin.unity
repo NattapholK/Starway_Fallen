@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 172}
+  m_AnchoredPosition: {x: 12, y: 232}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &690097514
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00:00
+  m_text: '00:00:00 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -648,15 +648,15 @@ RectTransform:
   m_GameObject: {fileID: 1020253412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 528562109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.026733398, y: -299}
-  m_SizeDelta: {x: -1558.5, y: -869.4446}
+  m_AnchoredPosition: {x: 0, y: -227}
+  m_SizeDelta: {x: -736.98, y: -410.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020253414
 MonoBehaviour:
@@ -786,7 +786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: 122}
+  m_AnchoredPosition: {x: -57, y: 182}
   m_SizeDelta: {x: 413.8318, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057544972
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over You Got Fuck
+  m_text: you are the storngest one
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1caab824627bba4780594dbf57f8b4c, type: 2}
   m_sharedMaterial: {fileID: -5865752662014426070, guid: d1caab824627bba4780594dbf57f8b4c, type: 2}
@@ -818,8 +818,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278256127
-  m_fontColor: {r: 1, g: 0.0047169924, b: 0.0047169924, a: 1}
+    rgba: 4278321146
+  m_fontColor: {r: 0.98062634, g: 1, b: 0.0039215684, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -836,8 +836,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -326.06613, w: 0}
+  m_margin: {x: 0, y: 0, z: -592.31915, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -916,9 +916,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: a3006bb8cba0a564d86c9af49db754f9, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6bc06a53f03cc6b48bb11e7da748c4b8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.139
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1045,15 +1045,15 @@ RectTransform:
   m_GameObject: {fileID: 1499280907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 528562109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.017822266, y: -71}
-  m_SizeDelta: {x: -1558.4822, y: -868.166}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1569.2297, y: 845.8522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499280909
 MonoBehaviour:

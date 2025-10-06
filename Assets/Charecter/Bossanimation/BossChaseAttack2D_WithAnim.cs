@@ -1,4 +1,4 @@
-// File: BossChaseAttack2D_WithAnim.cs  (Attack + Bullet Hell + SFX hooks)
+// File: BossChaseAttack2D_WithAnim.cs  (Attack + Bullet Hell + SFX hooks + Death)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,9 +36,6 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     public float maxHellDuration = 2.0f;
     public bool  hellOnlyWhenInRange = false;
 
-    [Header("Bullet Spawner (optional)")]
-    public BossBulletSpawner bulletSpawner; // ใส่คอมโพเนนต์ spawner ไว้บนบอส
-
     [Header("Hitbox (OverlapBox)")]
     public Transform hitOrigin;
     public Vector2  boxSize = new Vector2(1.4f, 0.6f);
@@ -65,6 +62,20 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     [Tooltip("อ้างอิง BossAttackSFXEvents เพื่อใช้ Animation Events เล่นเสียง")]
     public BossAttackSFXEvents sfx;
 
+    // ====== Death / Dying ======
+    [Header("Death")]
+    [Tooltip("Trigger ใน Animator สำหรับอนิเมตาย")]
+    public string deathTrigger = "Die";
+    [Tooltip("Bool ใน Animator ไว้ล็อกสถานะตาย (ไม่บังคับ)")]
+    public string deadBool = "IsDead";
+    [Tooltip("ปิดสคริปต์/ระบบยิงกระสุนเมื่อบอสตาย")]
+    public bool disableBulletSpawnerOnDeath = true;
+    [Tooltip("ปิดคอลลิเดอร์บนบอสเมื่อเริ่มตาย (กันโดนซ้ำ)")]
+    public bool disableCollidersOnDeath = true;
+
+    [Header("Bullet Spawner (optional)")]
+    public BossBulletSpawner bulletSpawner; // ใส่คอมโพเนนต์ spawner ไว้บนบอส
+
     // ===== internal =====
     Rigidbody2D rb;
     Animator anim;
@@ -76,6 +87,8 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 
     bool  inHell = false;
     float hellCD = 0f;
+
+    bool  isDead = false;
 
     // กันโดนซ้ำในสวิงเดียวกัน
     readonly HashSet<Collider2D> _hitThisSwing = new HashSet<Collider2D>();
@@ -113,6 +126,10 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         if (!bulletSpawner) bulletSpawner = GetComponent<BossBulletSpawner>();
         if (!sfx) sfx = GetComponent<BossAttackSFXEvents>();
 
+        // ผูกกับ BossHealth เพื่อฟัง onDeath
+        var bh = GetComponent<BossHealth>();
+        if (bh != null) bh.onDeath.AddListener(OnBossDeath);
+
         _originalScale   = transform.localScale;
         _attackStateHash = Animator.StringToHash(attackStateName);
         _hellStateHash   = Animator.StringToHash(hellStateName);
@@ -120,6 +137,8 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 
     void Update()
     {
+        if (isDead) { anim.SetBool(runBool, false); return; }  // ตายแล้วไม่ทำอะไรต่อ
+
         if (!player) { anim.SetBool(runBool, false); return; }
 
         if (atkCD  > 0f) atkCD  -= Time.deltaTime;
@@ -203,7 +222,7 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (attacking || inHell) return;
+        if (isDead || attacking || inHell) return;
         if (moveDir.sqrMagnitude > 0f)
         {
             Vector2 next = (Vector2)transform.position + moveDir * (moveSpeed * Time.fixedDeltaTime);
@@ -232,18 +251,21 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     // Animation Events (Normal_at)
     public void AE_AttackBegin()
     {
+        if (isDead) return;
         _hitThisSwing.Clear();
         sfx?.AE_SwingStart(); // ง้างดาบ/เริ่มสวิง
     }
 
     public void AE_AttackHit()
     {
+        if (isDead) return;
         PerformHitboxOnce();  // ตรวจโดนจริง
         // ไม่เล่นเสียงที่นี่ ให้ไปตัดสินใน AE_MeleeResolve() แทน
     }
 
     public void AE_AttackEnd()
     {
+        if (isDead) return;
         attacking = false;
         if (!string.IsNullOrEmpty(attackingBool))
             anim.SetBool(attackingBool, false);
@@ -265,12 +287,15 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
     // Animation Events (Hell_frame)
     public void AE_HellBegin()
     {
+        if (isDead) return;
         sfx?.AE_HellCharge();
     }
 
     // เรียกบน “เฟรมดาบปักพื้น”
     public void AE_HellFireBurst()
     {
+        if (isDead) return;
+
         if (bulletSpawner != null)
         {
             bulletSpawner.AE_SpawnRadialBurst();
@@ -282,23 +307,70 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
 
     public void AE_HellEnd()
     {
+        if (isDead) return;
         inHell = false;
     }
 
     // ===== SFX resolve (เรียกจากคีย์เฟรม contact) =====
     public void AE_MeleeResolve()
     {
-        // จะเล่น Hit หรือ Whoosh ขึ้นกับว่า PerformHitboxOnce เพิ่งทำดาเมจได้หรือไม่ (ผ่าน RegisterHit)
+        if (isDead) return;
         sfx?.AE_MeleeResolve();
     }
 
-    public void AE_Hurt()  { sfx?.AE_Hurt();  }
+    public void AE_Hurt()  { if (!isDead) sfx?.AE_Hurt();  }
     public void AE_Death() { sfx?.AE_Death(); }
+
+    // ======= Death (hook จาก BossHealth.onDeath) =======
+    public void OnBossDeath()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        // หยุดสถานะการต่อสู้ทั้งหมด
+        attacking = false;
+        inHell = false;
+        moveDir = Vector2.zero;
+        atkCD = 999f;
+        hellCD = 999f;
+
+        // ปิดคูลดาวน์/ตัววิ่ง
+        anim.SetBool(runBool, false);
+
+        // รีเซ็ตทริกเกอร์อื่น ๆ กันชนกับ Die
+        anim.ResetTrigger(attackTrigger);
+        anim.ResetTrigger(hellTrigger);
+
+        // ตั้งค่า Bool ตาย (ถ้ามี) + ยิงทริกเกอร์ Die
+        if (!string.IsNullOrEmpty(deadBool)) anim.SetBool(deadBool, true);
+        if (!string.IsNullOrEmpty(deathTrigger)) anim.SetTrigger(deathTrigger);
+
+        // หยุดฟิสิกส์เคลื่อนที่
+        if (rb) rb.velocity = Vector2.zero;
+
+        // ปิดสปาวน์กระสุน/คอลลิเดอร์ถ้าต้องการ
+        if (disableBulletSpawnerOnDeath && bulletSpawner) bulletSpawner.enabled = false;
+
+        if (disableCollidersOnDeath)
+        {
+            foreach (var col in GetComponentsInChildren<Collider2D>())
+                col.enabled = false;
+        }
+
+        // แจ้ง SFX (ถ้าอยากให้มีเสียงตอนเริ่มตาย)
+        sfx?.AE_Death();
+    }
+
+    // เรียกจากคีย์เฟรมท้ายคลิปตาย (ถ้าอยาก)
+    public void AE_DeathFinished()
+    {
+        // ปล่อยว่างไว้ — ถ้าจะให้ลบตัว/ดรอปของ ค่อยไปทำใน AutoSceneChangeOnBossDeath หรืออีกสคริปต์
+    }
 
     // ===== Hitbox core =====
     void PerformHitboxOnce()
     {
-        if (!player) return;
+        if (!player || isDead) return;
 
         Vector2 dir = ((Vector2)player.position - (Vector2)transform.position).normalized;
         Vector2 origin = hitOrigin ? (Vector2)hitOrigin.position : (Vector2)transform.position;
@@ -332,8 +404,7 @@ public class BossChaseAttack2D_WithAnim : MonoBehaviour
         DebugDrawBox(center, boxSize, angle, Color.red, 0.02f);
 #endif
 
-        // แจ้งระบบเสียงว่า "ตีโดนจริง" ภายในเฟรมนี้
-        if (hitAnyone) sfx?.RegisterHit(false); // ถ้ามีระบบชนเกราะให้ส่ง true
+        if (hitAnyone) sfx?.RegisterHit(false);
     }
 
     // ===== Flip =====
